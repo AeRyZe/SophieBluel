@@ -70,8 +70,8 @@ apartmentsTrier.addEventListener("click", function() {
     genererProjects(apartmentsTried)
 });
 
-// Filtre appartements
-const livingTrier = document.querySelector("#livingButton");
+// Filtre hôtels et restaurants
+const livingTrier = document.querySelector("#livingsButton");
 
 livingTrier.addEventListener("click", function() {
     const livingTried = works.filter(function(work) {
