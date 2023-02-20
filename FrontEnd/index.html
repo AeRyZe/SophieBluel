@@ -8,19 +8,28 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<script src="https://kit.fontawesome.com/83ac43579f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="works.js"></script>
+	<script type="module" src="index.js"></script>
 </head>
 <body>
-<!-- Div invisible utilisé pour la page de connexion -->
-<div class="fullscreenBlack"></div>
+	<div id="loggedBand">
+		<button type="button" id="editorMode">
+			<i class="fa-solid fa-pen-to-square"></i>
+			Mode édition
+		</button>
+		<button type="button" id="publishChanges">
+			Publier les changements
+		</button>
+	</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<div>
-			<a href="#">Projets</a>
-			<a href="#">Contact</a>
-			<a href="login.html">Login</a>
+			<a style="font-weight:bold" href="#">Projets</a>
+			<a href="index.html#contact">Contact</a>
+			<a href="login.html" id="navOff">Login</a>
+			<div id="navOn">Logout</div>
 			<a href="https://instagram.com/"><img src="./assets/icons/instagram.png" alt="Instagram"></a>
 		<div>
 	</nav>
@@ -38,7 +47,13 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="portfolio-head">
+			<h2>Mes Projets</h2>
+			<div id="loggedEdit">
+				<i class="fa-solid fa-pen-to-square"></i>
+				Modifier
+			</div>
+		</div>
 		<div class="filters">
 			<div id="globalContainer">
 				<div>
@@ -67,7 +82,7 @@
 			<!-- JavaScript insertion ici. -->
 		</div>
 	</section>
-	<section id="contact">
+	<section id="contact" >
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
 		<form action="#" method="post">

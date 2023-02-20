@@ -1,5 +1,29 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Vérifie si l'utilisateur est connecté ou non et ajuste la page comme tel
+if (window.sessionStorage.getItem('token')) {
+    const headBar = document.getElementById('loggedBand');
+    headBar.style.display = 'flex';
+
+    const logout = document.getElementById('navOn');
+    const login = document.getElementById('navOff');
+    login.style.display = 'none';
+    logout.style.display = 'block';
+
+    const editBtn = document.getElementById('loggedEdit');
+    editBtn.style.display = 'block';
+}
+
+// Efface le token afin de se déconnecter du compte actuel
+document.getElementById('navOn').onclick = function() {
+    if (window.sessionStorage.getItem('token')) {
+        window.sessionStorage.removeItem('token')
+    };
+    location.reload()
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // Projets dynamiques générés sur la page index.html depuis le backend
 
 // Récupère les travaux depuis l'API et les traduits en JSON
@@ -51,7 +75,7 @@ allTrier.addEventListener("click", function() {
 const objectsTrier = document.querySelector("#objectsButton");
 
 objectsTrier.addEventListener("click", function() {
-    // Permet de filtrer les projets avec la condition en return
+    // Permet de filtrer les projets avec la condition en return (true/false)
     const objectsTried = works.filter(function(work) {
         return work.category.name === "Objets";
     });

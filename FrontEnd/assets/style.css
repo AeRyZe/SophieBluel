@@ -48,8 +48,8 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
+	max-width: 1340px;
+	margin: auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
@@ -68,7 +68,8 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: #B1663C;
+	padding: 0 20px
 }
 
 h1 > span {
@@ -90,15 +91,21 @@ nav div {
 	align-items: center;
 }
 
+#navOn,
 nav a {
 	font-size: 1.2em;
-	color: black;
 	text-decoration: none;
 	padding: 0 20px;
 }
 
+#navOn,
+a {
+	color: black;
+}
+#navOn:hover,
 a:hover,
 li:hover {
+	cursor: pointer;
 	color: #B1663C;
 }
 #introduction {
@@ -106,7 +113,7 @@ li:hover {
 	align-items: center;
 }
 #introduction figure {
-	flex: 1
+	flex: 1;
 }
 #introduction img {
 	display: block;
@@ -126,7 +133,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -184,6 +190,13 @@ li:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#login a {
+	color: black;
+	display: flex;
+	justify-content: center;
+}
+
+button[id="login-btn"],
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -191,15 +204,22 @@ input[type="submit"]{
 	background-color: #1D6154;
 	margin : 2em auto ;
 	width: 180px;
+	height: 50px;
+	font-size: 1.2em;
 	text-align: center;
 	border-radius: 60px ;
+	border: 0;
+}
+button[id="login-btn"]:hover,
+input[type="submit"]:hover{
+	cursor: pointer;
 }
 
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
-	margin: 2em
+	margin: 2em;
 }
 
 #globalContainer {
@@ -239,5 +259,60 @@ footer nav ul {
 #globalContainer button:focus {
 	background-color: #1D6154;
 	color: white;
+	cursor: pointer;
+}
+
+#loggedBand {
+	height: 59px;
+	width: 100%;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+#editorMode {
+	height: 38px;
+	width: 13%;
+	background-color: black;
+	color: white;
+	border-radius: 60px;
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4%;
+}
+#publishChanges {
+	height: 38px;
+	width: 20%;
+	background-color: white;
+	border-radius: 60px;
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-weight: 600;
+}
+#editorMode:hover,
+#publishChanges:hover {
+	cursor: pointer;
+}
+
+#navOn {
+	display: none;
+}
+
+.portfolio-head {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2%;
+}
+#loggedEdit {
+	width: fit-content;
+	display: none;
+}
+#loggedEdit:hover {
 	cursor: pointer;
 }
