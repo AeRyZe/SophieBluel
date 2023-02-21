@@ -1,5 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Connexion & utilitaires administrateur
+
 // Vérifie si l'utilisateur est connecté ou non et ajuste la page comme tel
 if (window.sessionStorage.getItem('token')) {
     const headBar = document.getElementById('loggedBand');
@@ -10,8 +12,12 @@ if (window.sessionStorage.getItem('token')) {
     login.style.display = 'none';
     logout.style.display = 'block';
 
-    const editBtn = document.getElementById('loggedEdit');
-    editBtn.style.display = 'block';
+    const editBtn1 = document.getElementById('loggedEdit1');
+    editBtn1.style.display = 'block';
+    const editBtn2 = document.getElementById('loggedEdit2');
+    editBtn2.style.display = 'block';
+    const editBtn3 = document.getElementById('loggedEdit3');
+    editBtn3.style.display = 'block';
 }
 
 // Efface le token afin de se déconnecter du compte actuel
@@ -104,5 +110,67 @@ livingTrier.addEventListener("click", function() {
     document.querySelector(".gallery").innerHTML = "";
     genererProjects(livingTried)
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Fenêtre modale
+
+function genererExistingProjects() {
+    for (let i = 0; i < works.length; i++) {
+        // Le parent où sera stocker les objets de la database
+        const gallery = document.querySelector("#editableGallery");
+        // Crée la box parent de la vignette
+        const divElement = document.createElement("div");
+        divElement.style.maxHeight = "110px";
+        divElement.style.maxWidth = "15%";
+        divElement.style.marginBottom = "25px";
+
+        // Crée la box image de la vignette
+        const imgElement = document.createElement("img");
+        imgElement.src = works[i].imageUrl;
+        imgElement.style.height = "100%";
+        imgElement.style.width = "100%";
+
+        // Crée le bouton d'édition de la vignette
+        const buttonElement = document.createElement("button");
+        buttonElement.style.border = "none";
+        buttonElement.style.backgroundColor = "rgba(0,0,0,0)";
+        buttonElement.style.fontFamily = "Work Sans";
+        buttonElement.innerHTML = "éditer";
+        buttonElement.addEventListener("mouseover", function(event) {
+            event.target.style.cursor = "pointer"
+        });
+        buttonElement.addEventListener("click", function(event) {
+            console.log("La requête a bien été reçue !")
+        });
+
+        // Associe la box parent à la classe gallery en tant qu'enfant
+        gallery.appendChild(divElement);
+        // Associe l'image de la vignette à sa box parent
+        divElement.appendChild(imgElement);
+        divElement.appendChild(buttonElement)
+    };
+}
+
+// Fonction pour ouvrir la fenêtre modale
+const background = document.getElementById('modal');
+document.getElementById('loggedEdit3').onclick = function() {
+    background.style.display = 'flex';
+    genererExistingProjects();
+};
+
+// Fonctions pour fermer la fenêtre modale
+// En cliquant en dehors de la fenêtre
+window.onclick = function(e) {
+    if (e.target == modal) {
+        background.style.display = 'none';
+        document.querySelector("#editableGallery").innerHTML = "";
+    }
+};
+// En cliquant sur la croix
+document.getElementById('closeBtn').onclick = function() {
+    background.style.display = 'none'
+    document.querySelector("#editableGallery").innerHTML = "";
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

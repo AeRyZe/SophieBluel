@@ -1,108 +1,136 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<script src="https://kit.fontawesome.com/83ac43579f.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="index.js"></script>
-</head>
-<body>
-	<div id="loggedBand">
-		<button type="button" id="editorMode">
-			<i class="fa-solid fa-pen-to-square"></i>
-			Mode édition
-		</button>
-		<button type="button" id="publishChanges">
-			Publier les changements
-		</button>
-	</div>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<div>
-			<a style="font-weight:bold" href="#">Projets</a>
-			<a href="index.html#contact">Contact</a>
-			<a href="login.html" id="navOff">Login</a>
-			<div id="navOn">Logout</div>
-			<a href="https://instagram.com/"><img src="./assets/icons/instagram.png" alt="Instagram"></a>
-		<div>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<div class="portfolio-head">
-			<h2>Mes Projets</h2>
-			<div id="loggedEdit">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sophie Bluel - Architecte d'intérieur</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+		<meta name="description" content="">
+		<script src="https://kit.fontawesome.com/83ac43579f.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="./assets/style.css">
+		<script type="module" src="index.js"></script>
+	</head>
+	<body>
+		<div id="loggedBand">
+			<button type="button" id="editorMode">
 				<i class="fa-solid fa-pen-to-square"></i>
-				Modifier
+				Mode édition
+			</button>
+			<button type="button" id="publishChanges">
+				Publier les changements
+			</button>
+		</div>
+		<div id="modal" aria-modal="true" aria-hidden="true">
+			<div id="modalWindow1">
+				<div id="modalHead">
+					<h3>Galerie photo</h3>
+					<button type="button" id="closeBtn"><i class="fa-solid fa-xmark fa-2xl"></i></button>
+				</div>
+				<div id="editableGallery">
+					<!-- Insertion de JavaScript ici -->
+				</div>
+				<div>
+					<button id="add-pictures">
+						Ajouter une photo
+					</button>
+				</div>
+				<div>
+					<button id="delete-pictures">
+						Supprimer la galerie
+					</button>
+				</div>
 			</div>
 		</div>
-		<div class="filters">
-			<div id="globalContainer">
+		<header>
+			<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+			<nav>
 				<div>
-					<button id="allButton">
-						Tous
-					</button>
-				</div>
+					<a style="font-weight:bold" href="#">Projets</a>
+					<a href="index.html#contact">Contact</a>
+					<a href="login.html" id="navOff">Login</a>
+					<div id="navOn">Logout</div>
+					<a href="https://instagram.com/"><img src="./assets/icons/instagram.png" alt="Instagram"></a>
 				<div>
-					<button id="objectsButton">
-						Objets
-					</button>
+			</nav>
+		</header>
+		<main>
+			<section id="introduction">
+				<figure>
+					<img src="./assets/images/sophie-bluel.png" alt="">
+					<div id="loggedEdit1" style="margin-left: 10%; margin-top: 1%;">
+						<i class="fa-solid fa-pen-to-square"></i>
+						Modifier
+					</div>
+				</figure>
+				<article>
+					<div id="loggedEdit2" style="margin-bottom: 2%; align-self: flex-start">
+						<i class="fa-solid fa-pen-to-square"></i>
+						Modifier
+					</div>
+					<h2>Designer d'espace</h2>
+					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+					<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+					<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+				</article>
+			</section>
+			<section id="portfolio">
+				<div class="portfolio-head">
+					<h2>Mes Projets</h2>
+					<div id="loggedEdit3">
+						<i class="fa-solid fa-pen-to-square"></i>
+						Modifier
+					</div>
 				</div>
-				<div>
-					<button id="apartmentsButton">
-						Appartements
-					</button>
+				<div class="filters">
+					<div id="globalContainer">
+						<div>
+							<button id="allButton">
+								Tous
+							</button>
+						</div>
+						<div>
+							<button id="objectsButton">
+								Objets
+							</button>
+						</div>
+						<div>
+							<button id="apartmentsButton">
+								Appartements
+							</button>
+						</div>
+						<div>
+							<button id="livingsButton">
+								Hôtels & restaurants
+							</button>
+						</div>
+					</div>
 				</div>
-				<div>
-					<button id="livingsButton">
-						Hôtels & restaurants
-					</button>
+				<div class="gallery">
+					<!-- JavaScript insertion ici. -->
 				</div>
-			</div>
-		</div>
-		<div class="gallery">
-			<!-- JavaScript insertion ici. -->
-		</div>
-	</section>
-	<section id="contact" >
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
-
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
-</body>
+			</section>
+			<section id="contact" >
+				<h2>Contact</h2>
+				<p>Vous avez un projet ? Discutons-en !</p>
+				<form action="#" method="post">
+					<label for="name">Nom</label>
+					<input type="text" name="name" id="name">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email">
+					<label for="message">Message</label>
+					<textarea name="message" id="message" cols="30" rows="10"></textarea>
+					<input type="submit" value="Envoyer">
+				</form>
+			</section>
+		</main>
+		<footer>
+			<nav>
+				<ul>
+					<li>Mentions Légales</li>
+				</ul>
+			</nav>
+		</footer>
+	</body>
 </html>

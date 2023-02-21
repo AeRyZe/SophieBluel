@@ -1,3 +1,4 @@
+// Fonction qui effectue la tentative de connexion avec les infos du formulaire
 async function tryToLogin(ids) {
   let answer = await fetch('http://localhost:5678/api/users/login', {
     method: 'POST',
@@ -8,9 +9,8 @@ async function tryToLogin(ids) {
     body: JSON.stringify(ids)
   })
   .then(response => response.json());
-  console.log(answer.userId);
 
-  // 
+  // Vérifie si l'utilisateur existe ou non, si oui, connecte et redirige à l'index
   if (!answer.userId) {
     alert("Utilisateur non trouvé !")
   } else {
