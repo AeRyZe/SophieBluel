@@ -156,21 +156,57 @@ function genererExistingProjects() {
 const background = document.getElementById('modal');
 document.getElementById('loggedEdit3').onclick = function() {
     background.style.display = 'flex';
-    genererExistingProjects();
+    genererExistingProjects()
 };
 
 // Fonctions pour fermer la fenêtre modale
+
 // En cliquant en dehors de la fenêtre
 window.onclick = function(e) {
     if (e.target == modal) {
         background.style.display = 'none';
-        document.querySelector("#editableGallery").innerHTML = "";
+        document.querySelector("#editableGallery").innerHTML = ""
     }
 };
 // En cliquant sur la croix
-document.getElementById('closeBtn').onclick = function() {
-    background.style.display = 'none'
-    document.querySelector("#editableGallery").innerHTML = "";
-}
+document.getElementById('closeBtn1').onclick = function() {
+    background.style.display = 'none';
+    document.querySelector("#editableGallery").innerHTML = ""
+};
+document.getElementById('closeBtn2').onclick = function() {
+    background.style.display = 'none';
+    document.querySelector("#editableGallery").innerHTML = ""
+};
+
+//
+const modalWindow1 = document.querySelector('#modalWindow1');
+const modalWindow2 = document.querySelector('#modalWindow2');
+
+//
+document.getElementById('add-pictures').onclick = function() {
+    modalWindow1.style.display = 'none';
+    modalWindow2.style.display = 'flex'
+};
+
+//
+document.getElementById('returnBack').onclick = function() {
+    modalWindow2.style.display = 'none';
+    modalWindow1.style.display = 'flex'
+};
+
+//
+const getCategories = await fetch("http://localhost:5678/api/categories");
+const categories = await getCategories.json();
+
+categories.forEach(function(element) {
+    const parentElement = document.querySelector('#categoriesContainer');
+
+    const optionElement = document.createElement('option');
+    optionElement.innerHTML = element.name;
+    optionElement.value = element.name;
+
+    parentElement.appendChild(optionElement)
+});
+    
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

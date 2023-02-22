@@ -24,9 +24,9 @@
 		</div>
 		<div id="modal" aria-modal="true" aria-hidden="true">
 			<div id="modalWindow1">
-				<div id="modalHead">
+				<div id="modalHead1">
 					<h3>Galerie photo</h3>
-					<button type="button" id="closeBtn"><i class="fa-solid fa-xmark fa-2xl"></i></button>
+					<button type="button" id="closeBtn1"><i class="fa-solid fa-xmark fa-2xl"></i></button>
 				</div>
 				<div id="editableGallery">
 					<!-- Insertion de JavaScript ici -->
@@ -42,9 +42,32 @@
 					</button>
 				</div>
 			</div>
+			<div id="modalWindow2">
+				<div id="modalHead2">
+					<button type="button" id="returnBack"><i class="fa-solid fa-arrow-left fa-2xl"></i></button>
+					<h3>Ajout photo</h3>
+					<button type="button" id="closeBtn2"><i class="fa-solid fa-xmark fa-2xl"></i></button>
+				</div>
+				<div id="pictureDiv">
+					<i class="fa-regular fa-image fa-2xl"></i>
+					<button type="button" id="addNewPict">+ Ajouter photo</button>
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<div id="formDiv">
+					<form action="#" method="post">
+						<label for="title">Titre</label>
+						<input type="text" name="title">
+						<label for="categorie">Catégorie</label>
+						<select name="categorie" id="categoriesContainer">
+							<!-- Insertion de JavaScript ici -->
+						</select>
+					</form>
+				</div>
+				<button type="button" id="addNewPictValidate">Valider</button>
+			</div>
 		</div>
 		<header>
-			<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 			<nav>
 				<div>
 					<a style="font-weight:bold" href="#">Projets</a>
@@ -59,13 +82,13 @@
 			<section id="introduction">
 				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="">
-					<div id="loggedEdit1" style="margin-left: 10%; margin-top: 1%;">
+					<div id="loggedEdit1">
 						<i class="fa-solid fa-pen-to-square"></i>
 						Modifier
 					</div>
 				</figure>
 				<article>
-					<div id="loggedEdit2" style="margin-bottom: 2%; align-self: flex-start">
+					<div id="loggedEdit2">
 						<i class="fa-solid fa-pen-to-square"></i>
 						Modifier
 					</div>
