@@ -178,23 +178,28 @@ document.getElementById('closeBtn2').onclick = function() {
     document.querySelector("#editableGallery").innerHTML = ""
 };
 
-//
 const modalWindow1 = document.querySelector('#modalWindow1');
 const modalWindow2 = document.querySelector('#modalWindow2');
 
-//
+// Bouton d'ajout de photo de la modale
 document.getElementById('add-pictures').onclick = function() {
     modalWindow1.style.display = 'none';
     modalWindow2.style.display = 'flex'
 };
 
-//
+// Bouton de retour de la modale d'ajout
 document.getElementById('returnBack').onclick = function() {
     modalWindow2.style.display = 'none';
-    modalWindow1.style.display = 'flex'
+    modalWindow1.style.display = 'flex';
+
+    document.getElementById("uploadPict").value = "";
+    document.querySelector("#formDiv input").value = "";
+
+    document.querySelector('#pictureDiv').style.display = 'flex';
+    document.querySelector('#previewDiv').style.display = 'none'
 };
 
-//
+// Génère dynamiquement les catégories depuis l'API
 const getCategories = await fetch("http://localhost:5678/api/categories");
 const categories = await getCategories.json();
 
@@ -203,10 +208,58 @@ categories.forEach(function(element) {
 
     const optionElement = document.createElement('option');
     optionElement.innerHTML = element.name;
-    optionElement.value = element.name;
+    optionElement.value = `${element.id},${element.name}`;
 
     parentElement.appendChild(optionElement)
 });
+
+// Permet à un bouton customisé de prendre la fonction d'un input file
+document.querySelector('#addNewPict').onclick = function() {
+    document.getElementById('uploadPict').click();
+};
+
+// Affiche l'image choisie par l'utilisateur
+document.getElementById('uploadPict').onchange = function(event) {
+    let target = event.target;
+    let files = target.files;
     
+    let fr = new FileReader();
+    fr.onload = function() {
+        document.getElementById('previewImg').src = fr.result;
+    }
+    fr.readAsDataURL(files[0]);
+
+    document.querySelector("#formDiv input").value = document.getElementById('uploadPict').files[0].name;
+
+    document.querySelector('#pictureDiv').style.display = 'none';
+    document.querySelector('#previewDiv').style.display = 'flex'
+};
+
+//
+async function addNewWork(title, imageUrl, categoryId, categoryName) {
+    let data = {
+        "id": `${works.length+1}`,
+        "title": `${title}`,
+        "imageUrl": `${imageUrl}`,
+        "categoryId": `${categoryId}`,
+        "userId": 1,
+        "category": {
+            "id": `${categoryId}`,
+            "name": `${categoryName}`
+        }
+    };
+    console.log(data)
+}
+
+// Valide le formulaire d'ajout et crée donc une nouvelle instance dans la database
+document.querySelector('#addNewPictValidate').onclick = function() {
+    const title = document.querySelector('#formDiv input').value;
+    const imageUrl = document.querySelector('#previewImg').src;
+    const categoryElements = document.querySelector('#categoriesContainer').value.split(',');
+    const categoryId = categoryElements[0];
+    const categoryName = categoryElements[1];
+
+    addNewWork(title, imageUrl, categoryId, categoryName)
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

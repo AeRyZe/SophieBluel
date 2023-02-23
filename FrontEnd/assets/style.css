@@ -412,6 +412,7 @@ button[id="delete-pictures"] {
 	background-color: rgba(0, 0, 0, 0);
 	border: none;
 }
+button[id="addNewPictValidate"]:hover,
 button[id="add-pictures"]:hover,
 button[id="delete-pictures"]:hover {
 	cursor: pointer;
@@ -488,4 +489,24 @@ button[id="delete-pictures"]:hover {
 	background-position: 95% 50%;
 	background-size: 10px;
 	background-repeat: no-repeat;
+}
+
+#uploadPict {
+	display: none;
+}
+
+#previewDiv {
+	height: 170px;
+	width: 100%;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+#previewImg {
+	height: 100%;
+	max-width: 40%;
 }
