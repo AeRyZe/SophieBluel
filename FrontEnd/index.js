@@ -121,25 +121,21 @@ function genererExistingProjects() {
         const gallery = document.querySelector("#editableGallery");
         // Crée la box parent de la vignette
         const divElement = document.createElement("div");
-        divElement.style.maxHeight = "110px";
-        divElement.style.maxWidth = "15%";
-        divElement.style.marginBottom = "25px";
+        divElement.setAttribute("id", "workContainer");
 
         // Crée la box image de la vignette
         const imgElement = document.createElement("img");
         imgElement.src = works[i].imageUrl;
-        imgElement.style.height = "100%";
-        imgElement.style.width = "100%";
+        imgElement.setAttribute("id", "workImg");
+
+        const deleteElement = document.createElement("div");
+        deleteElement.innerHTML = '<i class="fa-solid fa-trash-can fa-xs"></i>';
+        deleteElement.setAttribute("id", "deleteBtn");
 
         // Crée le bouton d'édition de la vignette
         const buttonElement = document.createElement("button");
-        buttonElement.style.border = "none";
-        buttonElement.style.backgroundColor = "rgba(0,0,0,0)";
-        buttonElement.style.fontFamily = "Work Sans";
         buttonElement.innerHTML = "éditer";
-        buttonElement.addEventListener("mouseover", function(event) {
-            event.target.style.cursor = "pointer"
-        });
+        buttonElement.setAttribute("id", "editWork");
         buttonElement.addEventListener("click", function(event) {
             console.log("La requête a bien été reçue !")
         });
@@ -148,6 +144,7 @@ function genererExistingProjects() {
         gallery.appendChild(divElement);
         // Associe l'image de la vignette à sa box parent
         divElement.appendChild(imgElement);
+        divElement.appendChild(deleteElement);
         divElement.appendChild(buttonElement)
     };
 }
@@ -229,37 +226,40 @@ document.getElementById('uploadPict').onchange = function(event) {
     }
     fr.readAsDataURL(files[0]);
 
-    document.querySelector("#formDiv input").value = document.getElementById('uploadPict').files[0].name;
+    const filename = document.getElementById('uploadPict').files[0].name.split('.')
+    document.querySelector("#formDiv input").value = filename[0];
 
     document.querySelector('#pictureDiv').style.display = 'none';
     document.querySelector('#previewDiv').style.display = 'flex'
 };
 
-//
-async function addNewWork(title, imageUrl, categoryId, categoryName) {
-    let data = {
-        "id": `${works.length+1}`,
-        "title": `${title}`,
-        "imageUrl": `${imageUrl}`,
-        "categoryId": `${categoryId}`,
-        "userId": 1,
-        "category": {
-            "id": `${categoryId}`,
-            "name": `${categoryName}`
-        }
-    };
-    console.log(data)
-}
-
 // Valide le formulaire d'ajout et crée donc une nouvelle instance dans la database
 document.querySelector('#addNewPictValidate').onclick = function() {
     const title = document.querySelector('#formDiv input').value;
-    const imageUrl = document.querySelector('#previewImg').src;
+    const image = document.querySelector('#uploadPict').files[0];
     const categoryElements = document.querySelector('#categoriesContainer').value.split(',');
-    const categoryId = categoryElements[0];
+    const categoryId = parseInt(categoryElements[0]);
     const categoryName = categoryElements[1];
 
-    addNewWork(title, imageUrl, categoryId, categoryName)
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('image', image);
+    formData.append('category', categoryId);
+    
+    fetch('http://localhost:5678/api/works', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${window.sessionStorage.token}`,
+        },
+        body: formData,
+    })
+    .then(function(response) {
+        if (response.ok) {
+            alert('Nouveau projet envoyé avec succès !')
+            location.reload();
+        }
+    });
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

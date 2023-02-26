@@ -510,3 +510,38 @@ button[id="delete-pictures"]:hover {
 	height: 100%;
 	max-width: 40%;
 }
+
+#workContainer {
+	height: 100px;
+	width: 15%;
+	margin-bottom: 25px;
+	position: relative;
+}
+#workImg {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+#editWork {
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	font-family: 'Work Sans';
+	margin-top: 74px;
+}
+#deleteBtn {
+	height: 17px;
+	width: 23%;
+	background-color: black;
+	color: white;
+	border-radius: 2px;
+	z-index: 1;
+	position: relative;
+	margin: 5px 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#editWork:hover,
+#deleteBtn:hover {
+	cursor: pointer;
+}
