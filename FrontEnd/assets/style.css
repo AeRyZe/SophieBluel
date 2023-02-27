@@ -532,6 +532,7 @@ button[id="delete-pictures"]:hover {
 	height: 17px;
 	width: 23%;
 	background-color: black;
+	border: none;
 	color: white;
 	border-radius: 2px;
 	z-index: 1;

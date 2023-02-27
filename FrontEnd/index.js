@@ -128,9 +128,23 @@ function genererExistingProjects() {
         imgElement.src = works[i].imageUrl;
         imgElement.setAttribute("id", "workImg");
 
-        const deleteElement = document.createElement("div");
+        const deleteElement = document.createElement("button");
         deleteElement.innerHTML = '<i class="fa-solid fa-trash-can fa-xs"></i>';
         deleteElement.setAttribute("id", "deleteBtn");
+        deleteElement.addEventListener('click', function() {
+            fetch(`http://localhost:5678/api/works/${works[i].id}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${window.sessionStorage.token}`,
+                },
+            })
+            .then(response => { 
+                if (response.ok) { 
+                    alert("Projet supprimé avec succès !");
+                    location.reload();
+                }
+            });
+        })
 
         // Crée le bouton d'édition de la vignette
         const buttonElement = document.createElement("button");
@@ -259,7 +273,16 @@ document.querySelector('#addNewPictValidate').onclick = function() {
             alert('Nouveau projet envoyé avec succès !')
             location.reload();
         }
-    });
+    })
 };
+
+// Fonction qui permet de supprimer un travail depuis la database
+function deleteWork(id) {
+};
+
+// Supprime le travail sélectionné en cliquant sur son bouton delete
+document.querySelectorAll('.deleteBtn').onclick = function() {
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
