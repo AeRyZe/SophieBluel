@@ -116,7 +116,7 @@ livingTrier.addEventListener("click", function() {
 function genererExistingProjects() {
     // Le parent où sera stocker les objets de la database
     const gallery = document.querySelector("#editableGallery");
-    
+
     gallery.innerHTML = "";
 
     for (let i = 0; i < works.length; i++) {
@@ -143,6 +143,7 @@ function genererExistingProjects() {
             .then(response => { 
                 if (response.ok) { 
                     alert("Projet supprimé avec succès !");
+                    genererProjects(works);
                     genererExistingProjects()
                 }
             });
@@ -274,8 +275,9 @@ document.querySelector('#addNewPictValidate').onclick = function() {
     })
     .then(function(response) {
         if (response.ok) {
-            alert('Nouveau projet envoyé avec succès !')
-            genererExistingProjects();
+            alert('Nouveau projet envoyé avec succès !');
+            genererProjects(works);
+            genererExistingProjects()
         } else {
             alert('Erreur lors de la lecture des informations.')
         }
