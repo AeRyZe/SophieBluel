@@ -37,6 +37,9 @@ const getWorks = await fetch("http://localhost:5678/api/works");
 const works = await getWorks.json();
 
 function genererProjects(projects) {
+    // Effacement de l'écran et regénération de la page
+    document.querySelector(".gallery").innerHTML = "";
+
     for (let i = 0; i < projects.length; i++) {
         // Index du projet actuel à chaque boucle
         const project = projects[i];
@@ -71,8 +74,6 @@ const allTrier = document.querySelector("#allButton");
 
 // Fonction qui sert à détecter le clique de l'utilisateur sur le bouton
 allTrier.addEventListener("click", function() {
-    // Effacement de l'écran et regénération de la page
-    document.querySelector(".gallery").innerHTML = "";
     // Génère la liste des projets concernés par le filtre
     genererProjects(works)
 });
@@ -85,7 +86,6 @@ objectsTrier.addEventListener("click", function() {
     const objectsTried = works.filter(function(work) {
         return work.category.name === "Objets";
     });
-    document.querySelector(".gallery").innerHTML = "";
     genererProjects(objectsTried)
 });
 
@@ -96,7 +96,6 @@ apartmentsTrier.addEventListener("click", function() {
     const apartmentsTried = works.filter(function(work) {
         return work.category.name === "Appartements";
     });
-    document.querySelector(".gallery").innerHTML = "";
     genererProjects(apartmentsTried)
 });
 
@@ -107,7 +106,6 @@ livingTrier.addEventListener("click", function() {
     const livingTried = works.filter(function(work) {
         return work.category.name === "Hotels & restaurants";
     });
-    document.querySelector(".gallery").innerHTML = "";
     genererProjects(livingTried)
 });
 
@@ -116,9 +114,12 @@ livingTrier.addEventListener("click", function() {
 // Fenêtre modale
 
 function genererExistingProjects() {
+    // Le parent où sera stocker les objets de la database
+    const gallery = document.querySelector("#editableGallery");
+    
+    gallery.innerHTML = "";
+
     for (let i = 0; i < works.length; i++) {
-        // Le parent où sera stocker les objets de la database
-        const gallery = document.querySelector("#editableGallery");
         // Crée la box parent de la vignette
         const divElement = document.createElement("div");
         divElement.setAttribute("id", "workContainer");
@@ -131,6 +132,7 @@ function genererExistingProjects() {
         const deleteElement = document.createElement("button");
         deleteElement.innerHTML = '<i class="fa-solid fa-trash-can fa-xs"></i>';
         deleteElement.setAttribute("id", "deleteBtn");
+        // Fonction qui permet de supprimer un projet ciblé
         deleteElement.addEventListener('click', function() {
             fetch(`http://localhost:5678/api/works/${works[i].id}`, {
                 method: 'DELETE',
@@ -141,10 +143,10 @@ function genererExistingProjects() {
             .then(response => { 
                 if (response.ok) { 
                     alert("Projet supprimé avec succès !");
-                    location.reload();
+                    genererExistingProjects()
                 }
             });
-        })
+        });
 
         // Crée le bouton d'édition de la vignette
         const buttonElement = document.createElement("button");
@@ -161,7 +163,7 @@ function genererExistingProjects() {
         divElement.appendChild(deleteElement);
         divElement.appendChild(buttonElement)
     };
-}
+};
 
 // Fonction pour ouvrir la fenêtre modale
 const background = document.getElementById('modal');
@@ -240,9 +242,11 @@ document.getElementById('uploadPict').onchange = function(event) {
     }
     fr.readAsDataURL(files[0]);
 
+    // Change l'entrée actuelle du nom au nom du fichier
     const filename = document.getElementById('uploadPict').files[0].name.split('.')
     document.querySelector("#formDiv input").value = filename[0];
 
+    // Affiche la seconde modale
     document.querySelector('#pictureDiv').style.display = 'none';
     document.querySelector('#previewDiv').style.display = 'flex'
 };
@@ -271,18 +275,11 @@ document.querySelector('#addNewPictValidate').onclick = function() {
     .then(function(response) {
         if (response.ok) {
             alert('Nouveau projet envoyé avec succès !')
-            location.reload();
+            genererExistingProjects();
+        } else {
+            alert('Erreur lors de la lecture des informations.')
         }
     })
 };
-
-// Fonction qui permet de supprimer un travail depuis la database
-function deleteWork(id) {
-};
-
-// Supprime le travail sélectionné en cliquant sur son bouton delete
-document.querySelectorAll('.deleteBtn').onclick = function() {
-
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
